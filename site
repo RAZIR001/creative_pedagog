@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kreativ Pedagog — zamonaviy ta'lim, darsliklar va metodik materiallar platformasi.">
+  <title>Kreativ Pedagog | Zamonaviy ta'lim</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #6c5ce7;
+      --primary-dark: #5243c7;
+      --bg: #f8f9fa;
+      --text: #2d3436;
+      --muted: #636e72;
+      --white: #fff;
+      --shadow: 0 10px 30px rgba(108, 92, 231, .1);
+      --radius: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* NAVBAR */
+    header {
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, .05);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      color: var(--primary);
+      font-size: 22px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text);
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search-box input {
+      width: 180px;
+      padding: 10px 14px;
+      border: 1px solid #dfe6e9;
+      border-radius: 30px;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-register, .slide-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 11px 22px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    .btn-register:hover, .slide-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--primary);
+      font-size: 24px;
+    }
+
+    /* HERO SLIDER */
+    .slider-section {
+      height: 510px;
+      position: relative;
+      overflow: hidden;
+      background: #211d3a;
+    }
+
+    .slider-container {
+      display: flex;
+      height: 100%;
+      transition: transform .6s ease;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      min-width: 0;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 40px 10%;
+      color: white;
+      isolation: isolate;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(20, 15, 45, .9),
+        rgba(20, 15, 45, .5)
+      );
+      z-index: -1;
+    }
+
+    .slide-1 {
+      background: linear-gradient(135deg, #4834d4, #130f40);
+    }
+
+    .slide-2 {
+      background: linear-gradient(135deg, #0984e3, #6c5ce7);
+    }
+
+    .slide-3 {
+      background: linear-gradient(135deg, #6c5ce7, #a55eea);
+    }
+
+    .slide-content {
+      max-width: 680px;
+    }
+
+    .slide-content h1 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+
+    .slide-content p {
+      line-height: 1.8;
+      margin-bottom: 28px;
+      color: #f1efff;
+    }
+
+    .slide-btn {
+      background: white;
+      color: var(--primary);
+    }
+
+    .slide-btn:hover {
+      background: #eeeaff;
+      color: var(--primary-dark);
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .2);
+      color: white;
+      z-index: 5;
+      transition: .3s;
+    }
+
+    .slider-arrow:hover {
+      background: var(--primary);
+    }
+
+    .arrow-prev { left: 20px; }
+    .arrow-next { right: 20px; }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 5;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border: 0;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .55);
+      transition: .3s;
+    }
+
+    .dot.active {
+      width: 28px;
+      background: white;
+    }
+
+    /* GENERAL SECTIONS */
+    .section {
+      max-width: 1200px;
+      margin: 75px auto;
+      padding: 0 24px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      margin-bottom: 10px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* CATEGORIES */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px;
+    }
+
+    .category-card {
+      padding: 32px 25px;
+      text-align: center;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid #eeeaff;
+      transition: .3s;
+    }
+
+    .category-card:hover {
+      transform: translateY(-7px);
+    }
+
+    .category-icon {
+      width: 75px;
+      height: 75px;
+      margin: 0 auto 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--primary);
+      background: #efedff;
+      font-size: 29px;
+    }
+
+    .category-card h3 {
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .category-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .category-link {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* FILTERS */
+    .filter-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+
+    .filter-btn {
+      padding: 10px 22px;
+      border: 1px solid #dfe6e9;
+      background: white;
+      color: var(--text);
+      border-radius: 30px;
+      transition: .3s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    /* MATERIAL CARDS */
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 25px;
+    }
+
+    .material-card {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: .3s;
+    }
+
+    .material-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .material-card[hidden] {
+      display: none !important;
+    }
+
+    .material-thumb {
+      height: 190px;
+      position: relative;
+      overflow: hidden;
+      background: #e9e5ff;
+    }
+
+    .material-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .3s;
+    }
+
+    .material-card:hover .material-thumb img {
+      transform: scale(1.05);
+    }
+
+    .badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: white;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .price-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: var(--primary);
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .material-info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 22px;
+    }
+
+    .author {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .material-info h3 {
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .btn-download {
+      margin-top: auto;
+      display: block;
+      text-align: center;
+      padding: 11px;
+      background: #f0eeff;
+      color: var(--primary);
+      border-radius: 10px;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    .btn-download:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .empty-message {
+      text-align: center;
+      padding: 30px;
+      color: var(--muted);
+      display: none;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 35px 24px;
+      text-align: center;
+      background: #211d3a;
+      color: white;
+    }
+
+    footer p {
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1000px) {
+      .nav-menu {
+        gap: 12px;
+      }
+
+      .search-box input {
+        width: 140px;
+      }
+
+      .categories-grid,
+      .materials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-container {
+        flex-wrap: wrap;
+        padding: 14px 18px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-menu {
+        display: none;
+        order: 3;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 15px 0;
+      }
+
+      .nav-menu.open {
+        display: flex;
+      }
+
+      .nav-actions {
+        order: 2;
+        width: 100%;
+      }
+
+      .search-box {
+        flex: 1;
+      }
+
+      .search-box input {
+        width: 100%;
+      }
+
+      .btn-register {
+        padding: 10px 16px;
+        white-space: nowrap;
+      }
+
+      .slider-section {
+        height: 450px;
+      }
+
+      .slide {
+        padding: 35px 55px;
+      }
+
+      .slide-content p {
+        font-size: 14px;
+      }
+
+      .arrow-prev { left: 8px; }
+      .arrow-next { right: 8px; }
+    }
+
+    @media (max-width: 520px) {
+      .categories-grid,
+      .materials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        margin: 55px auto;
+        padding: 0 16px;
+      }
+
+      .slider-section {
+        height: 430px;
+      }
+
+      .slide {
+        padding: 30px 40px;
+      }
+
+      .slide-content h1 {
+        font-size: 29px;
+      }
+
+      .category-card {
+        padding: 28px 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <nav class="nav-container" aria-label="Asosiy navigatsiya">
+      <a class="logo" href="#home">
+        <i class="fa-solid fa-graduation-cap"></i>
+        Kreativ Pedagog
+      </a>
+
+      <button class="menu-toggle" id="menuToggle"
+        aria-label="Menyuni ochish" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a class="nav-link" href="#home">Bosh sahifa</a></li>
+        <li><a class="nav-link" href="#materials">Darsliklar</a></li>
+        <li><a class="nav-link" href="#categories">Bo'limlar</a></li>
+        <li><a class="nav-link" href="#team">Jamoa</a></li>
+        <li><a class="nav-link" href="#contact">Bog'lanish</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <label class="search-box">
+          <input type="search" id="searchInput"
+            placeholder="Material qidirish..." aria-label="Material qidirish">
+        </label>
+        <a class="btn-register" href="#contact">Kirish</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- SLIDER -->
+    <section class="slider-section" id="home" aria-label="Bosh sahifa slayderi">
+      <div class="slider-container" id="slider">
+
+        <article class="slide slide-1">
+          <div class="slide-content">
+            <h1>Assalomu alaykum! Kreativ Pedagog saytiga xush kelibsiz</h1>
+            <p>
+              Bo'lajak boshlang'ich sinf o'qituvchilarining kreativ
+              kompetensiyasini rivojlantirish uchun metodik materiallar,
+              darsliklar va foydali topshiriqlar.
+            </p>
+            <a class="slide-btn" href="#categories">
+              Bo'limlarni ko'rish <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="slide slide-2">
+          <div class="slide-content">
+            <h1>Zamonaviy metodika va interaktiv darslar</h1>
+            <p>
+              O'quvchilarni darsga qiziqtiruvchi qiziqarli usullar,
+              interaktiv topshiriqlar va vizual materiallar.
+            </p>
+            <a class="slide-btn" href="#materials">
+              Darsliklarni ko'rish <i class="fa-solid fa-book-open"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="slide slide-3">
+          <div class="slide-content">
+            <h1>Bilim oling, ijod qiling va rivojlaning!</h1>
+            <p>
+              O'qituvchilar va talabalar uchun bepul ta'lim resurslari
+              bir joyda.
+            </p>
+            <a class="slide-btn" href="#materials">
+              Materiallarni topish <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <button class="slider-arrow arrow-prev" id="prevSlide"
+        aria-label="Oldingi slayd">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <button class="slider-arrow arrow-next" id="nextSlide"
+        aria-label="Keyingi slayd">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <div class="slider-dots" id="sliderDots" aria-label="Slaydlar">
+        <button class="dot active" data-index="0" aria-label="1-slayd"></button>
+        <button class="dot" data-index="1" aria-label="2-slayd"></button>
+        <button class="dot" data-index="2" aria-label="3-slayd"></button>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section" id="categories">
+      <div class="section-header">
+        <h2>Kategoriyalar bo'yicha izlash</h2>
+        <p>O'zingizga kerakli ta'lim yo'nalishini tanlang</p>
+      </div>
+
+      <div class="categories-grid">
+        <article class="category-card">
+          <div class="category-icon">
+            <i class="fa-solid fa-school"></i>
+          </div>
+          <h3>Maktab darsliklari</h3>
+          <p>
+            Umumta'lim maktablari o'quvchilari va ustozlari uchun
+            darsliklar hamda metodik qo'llanmalar.
+          </p>
+          <a class="category-link" href="#materials"
+            data-filter-category="books">
+            O'qish <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">
+            <i class="fa-solid fa-user-graduate"></i>
+          </div>
+          <h3>Oliy ta'lim darsliklari</h3>
+          <p>
+            Talabalar va professor-o'qituvchilar uchun
+            mo'ljallangan o'quv adabiyotlari.
+          </p>
+          <a class="category-link" href="#materials"
+            data-filter-category="books">
+            O'qish <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <h3>Xorij darsliklari</h3>
+          <p>
+            Xorijiy ta'lim manbalari va turli o'quv qo'llanmalari
+            to'plami.
+          </p>
+          <a class="category-link" href="#materials"
+            data-filter-category="books">
+            O'qish <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- MATERIALS -->
+    <section class="section" id="materials">
+      <div class="section-header">
+        <h2>Kreativ materiallar va darsliklar</h2>
+        <p>Kerakli bo'limni tanlab, materiallarni toping</p>
+      </div>
+
+      <div class="filter-container" aria-label="Material filtrlari">
+        <button class="filter-btn active" data-filter="all">Hammasi</button>
+        <button class="filter-btn" data-filter="books">Darsliklar</button>
+        <button class="filter-btn" data-filter="tasks">Topshiriqlar</button>
+        <button class="filter-btn" data-filter="tests">Testlar</button>
+      </div>
+
+      <div class="materials-grid" id="materialsGrid">
+
+        <article class="material-card" data-category="books">
+          <div class="material-thumb">
+            <img
+              src="https://placehold.co/600x400/6c5ce7/ffffff?text=Matematika"
+              alt="Matematika darsligi muqovasi" loading="lazy">
+            <span class="badge">KITOB</span>
+            <span class="price-badge">Bepul</span>
+          </div>
+          <div class="material-info">
+            <p class="author">Maktab darsliklari</p>
+            <h3>1-sinf Matematika darsligi</h3>
+            <a class="btn-download" href="#contact">
+              <i class="fa-solid fa-download"></i> Yuklab olish
+            </a>
+          </div>
+        </article>
+
+        <article class="material-card" data-category="tasks">
+          <div class="material-thumb">
+            <img
+              src="https://placehold.co/600x400/00b894/ffffff?text=Kreativ+topshiriqlar"
+              alt="Kreativ topshiriqlar muqovasi" loading="lazy">
+            <span class="badge">KREATIV</span>
+            <span class="price-badge">Bepul</span>
+          </div>
+          <div class="material-info">
+            <p class="author">Botir Xushboqov</p>
+            <h3>Mantiqiy va kreativ fikrlash topshiriqlari</h3>
+            <a class="btn-download" href="#contact">
+              <i class="fa-solid fa-download"></i> Yuklab olish
+            </a>
+          </div>
+        </article>
+
+        <article class="material-card" data-category="tests">
+          <div class="material-thumb">
+            <img
+              src="https://placehold.co/600x400/fdcb6e/2d3436?text=Matematik+testlar"
+              alt="Matematik testlar muqovasi" loading="lazy">
+            <span class="badge">TEST</span>
+            <span class="price-badge">Bepul</span>
+          </div>
+          <div class="material-info">
+            <p class="author">Botir Xushboqov</p>
+            <h3>Matematik rebuslar va qiziqarli testlar</h3>
+            <a class="btn-download" href="#contact">
+              <i class="fa-solid fa-download"></i> Yuklab olish
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="empty-message" id="emptyMessage">
+        Bu so'rov bo'yicha material topilmadi.
+      </p>
+    </section>
+
+    <!-- TEAM -->
+    <section class="section" id="team">
+      <div class="section-header">
+        <h2>Bizning jamoa</h2>
+        <p>Ta'lim va kreativ fikrlashni rivojlantirish yo'lida birgamiz.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <p><strong>Kreativ Pedagog</strong></p>
+    <p>Zamonaviy ta'lim va kreativ rivojlanish platformasi.</p>
+    <p>&copy; <span id="currentYear"></span> Kreativ Pedagog. Barcha huquqlar himoyalangan.</p>
+  </footer>
+
+  <script>
+    // SLIDER
+    const slider = document.getElementById("slider");
+    const dots = document.querySelectorAll(".dot");
+    const totalSlides = dots.length;
+    let currentSlideIndex = 0;
+    let sliderTimer;
+
+    function showSlide(index) {
+      currentSlideIndex = (index + totalSlides) % totalSlides;
+
+      slider.style.transform =
+        `translateX(-${currentSlideIndex * 100}%)`;
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentSlideIndex);
+        dot.setAttribute(
+          "aria-current",
+          i === currentSlideIndex ? "true" : "false"
+        );
+      });
+    }
+
+    function moveSlide(step) {
+      showSlide(currentSlideIndex + step);
+    }
+
+    function startSlider() {
+      clearInterval(sliderTimer);
+      sliderTimer = setInterval(() => moveSlide(1), 5000);
+    }
+
+    document.getElementById("prevSlide").addEventListener("click", () => {
+      moveSlide(-1);
+      startSlider();
+    });
+
+    document.getElementById("nextSlide").addEventListener("click", () => {
+      moveSlide(1);
+      startSlider();
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        showSlide(Number(dot.dataset.index));
+        startSlider();
+      });
+    });
+
+    const sliderSection = document.querySelector(".slider-section");
+
+    sliderSection.addEventListener("mouseenter", () => {
+      clearInterval(sliderTimer);
+    });
+
+    sliderSection.addEventListener("mouseleave", startSlider);
+
+    showSlide(0);
+    startSlider();
+
+    // FILTERS + SEARCH
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const materialCards = document.querySelectorAll(".material-card");
+    const searchInput = document.getElementById("searchInput");
+    const emptyMessage = document.getElementById("emptyMessage");
+
+    let activeCategory = "all";
+
+    function updateMaterials() {
+      const searchText = searchInput.value
+        .trim()
+        .toLocaleLowerCase("uz");
+
+      let visibleCount = 0;
+
+      materialCards.forEach(card => {
+        const category = card.dataset.category;
+        const text = card.textContent.toLocaleLowerCase("uz");
+
+        const categoryMatches =
+          activeCategory === "all" || category === activeCategory;
+
+        const searchMatches = text.includes(searchText);
+        const isVisible = categoryMatches && searchMatches;
+
+        card.hidden = !isVisible;
+
+        if (isVisible) visibleCount++;
+      });
+
+      emptyMessage.style.display =
+        visibleCount === 0 ? "block" : "none";
+    }
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        activeCategory = button.dataset.filter;
+
+        filterButtons.forEach(btn => {
+          btn.classList.toggle("active", btn === button);
+        });
+
+        updateMaterials();
+      });
+    });
+
+    searchInput.addEventListener("input", updateMaterials);
+
+    // CATEGORY LINKS
+    document.querySelectorAll("[data-filter-category]").forEach(link => {
+      link.addEventListener("click", () => {
+        activeCategory = link.dataset.filterCategory;
+
+        filterButtons.forEach(button => {
+          button.classList.toggle(
+            "active",
+            button.dataset.filter === activeCategory
+          );
+        });
+
+        updateMaterials();
+      });
+    });
+
+    // MOBILE MENU
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    document.querySelectorAll(".nav-link").forEach(link => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    // CURRENT YEAR
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
